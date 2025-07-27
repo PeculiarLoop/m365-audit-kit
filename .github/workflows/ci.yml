@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup PowerShell
+        uses: PowerShell/PowerShell@v1
+        with:
+          version: '7.2'
+
+      - name: Install PowerShell modules
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          $modules = @('Microsoft.Graph', 'ExchangeOnlineManagement', 'PSScriptAnalyzer', 'Pester', 'platyPS')
+          foreach ($module in $modules) {
+            Install-Module -Name $module -Force -Confirm:$false
+          }
+
+      - name: Run PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          $results = Invoke-ScriptAnalyzer -Path ./src -Recurse -Severity Error
+          if ($results) {
+            $results | Format-Table -AutoSize
+            throw 'PSScriptAnalyzer errors detected'
+          }
+
+      - name: Run Pester tests
+        shell: pwsh
+        run: |
+          Invoke-Pester -Script ./tests -Passthru
+
+      - name: Generate external help documentation
+        shell: pwsh
+        run: |
+          if (Get-Command -Name New-MarkdownHelp -ErrorAction SilentlyContinue) {
+            New-MarkdownHelp -ModulePath ./src/M365AuditKit -OutputPath ./docs -Force
+          }
