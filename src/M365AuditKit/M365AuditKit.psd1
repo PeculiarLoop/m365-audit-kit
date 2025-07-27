@@ -9,7 +9,7 @@
     Copyright         = '(c) 2025 M365 Audit Kit Contributors. All rights reserved.'
     Description       = 'Audit toolkit for Microsoft 365 posture, compliance and incident response.'
     PowerShellVersion = '7.2'
-    FunctionsToExport = @()
+    FunctionsToExport = @('Connect-M365Audit')
     CmdletsToExport   = @()
     VariablesToExport = '*'
     AliasesToExport   = '*'
