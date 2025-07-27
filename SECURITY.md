@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you believe you have discovered a security vulnerability in this project, please **do not** open a public issue. Instead, email our security team at `security@example.com` with the details of the vulnerability and instructions for reproducing it. We will acknowledge your report within 3 business days.
+If you believe you have discovered a security vulnerability in this project, please **do not** open a public issue. Instead, email our security team at `dontcare@sorryaboutthat.com` with the details of the vulnerability and instructions for reproducing it. We will acknowledge your report within 3 business days.
 
 When reporting, do not include tenant identifiers, secrets, or electronic protected health information (ePHI) in your submission. Provide a proof of concept and any relevant logs without disclosing sensitive data.
 
