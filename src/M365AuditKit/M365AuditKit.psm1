@@ -11,4 +11,4 @@ Get-ChildItem -Path $PSScriptRoot -Filter '*.ps1' | ForEach-Object {
 }
 
 # Export public functions explicitly
-Export-ModuleMember -Function 'Connect-M365Audit'
+Export-ModuleMember -Function 'Connect-M365Audit','Get-M365PrivilegedRoleReport','Get-M365ConditionalAccessReport','Get-M365AppConsentRisk'
