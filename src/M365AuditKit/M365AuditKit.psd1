@@ -9,7 +9,7 @@
     Copyright         = '(c) 2025 M365 Audit Kit Contributors. All rights reserved.'
     Description       = 'Audit toolkit for Microsoft 365 posture, compliance and incident response.'
     PowerShellVersion = '7.2'
-    FunctionsToExport = @('Connect-M365Audit')
+    FunctionsToExport = @('Connect-M365Audit'),'Get-M65ForwardingAndInboxRules','Get-M365MailAuthPosture')
     CmdletsToExport   = @()
     VariablesToExport = '*'
     AliasesToExport   = '*'
